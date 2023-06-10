@@ -1,13 +1,19 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { CartItemm, Product } from "../../type/Type";
+import { CartItemm, Product, RequestBody } from "../../type/Type";
 import { ToastContainer, toast } from "react-toastify";
 
 interface CartState {
   items: CartItemm[];
+  isLoading: boolean;
+  success: boolean;
 }
-
+interface Response {
+  success: boolean;
+}
 const initialState: CartState = {
   items: [],
+  isLoading: false,
+  success: false,
 };
 
 const cartSlice = createSlice({
@@ -56,6 +62,18 @@ const cartSlice = createSlice({
         }
       }
     },
+    purchaseRequest: (state, action: PayloadAction<RequestBody>) => {
+      state.isLoading = true;
+    },
+    purchaseSuccess: (state, action: PayloadAction<Response>) => {
+      state.success = action.payload.success;
+      state.items = [];
+      state.isLoading = false;
+    },
+    purchaseFailed: (state) => {
+      state.isLoading = false;
+     
+    },
   },
 });
 
@@ -63,6 +81,9 @@ export const {
   addToCart,
   removeFromCart,
   incrementQuantity,
+  purchaseRequest,
+  purchaseSuccess,
+  purchaseFailed,
   decrementQuantity,
 } = cartSlice.actions;
 

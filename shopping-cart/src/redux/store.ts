@@ -18,6 +18,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { checkoutSaga } from "./saga/checkoutCartSaga";
 
 const saga = createSagaMiddleware();
 
@@ -42,7 +43,7 @@ export const store = configureStore({
     saga,
   ],
 });
-
+saga.run(checkoutSaga);
 saga.run(productSaga);
 
 export type RootState = ReturnType<typeof store.getState>;

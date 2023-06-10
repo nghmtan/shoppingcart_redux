@@ -11,7 +11,6 @@ const MainOutlet = () => {
   const cartList: CartItemm[] = useSelector(
     (state: RootState) => state.cart.items
   );
-  console.log(cartList);
   return (
     <div>
       <div className="bg-white shadow-md px-5 ">
@@ -63,7 +62,7 @@ const MainOutlet = () => {
                   </svg>
                 </div>
                 {cartList.length > 0 && (
-                  <div className="absolute -top-2 -right-2 bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">
+                  <div className="absolute -top-2 -right-2 bg-[#EF4444] text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">
                     {cartList.length}
                   </div>
                 )}

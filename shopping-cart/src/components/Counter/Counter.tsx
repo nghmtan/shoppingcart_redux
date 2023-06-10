@@ -55,17 +55,17 @@ const Counter: FC<counterProps> = ({ quantity, setQuantity, price, id }) => {
           onClick={handleDecrement}
           cursor={"pointer"}
         >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
           <g
             id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></g>
           <g id="SVGRepo_iconCarrier">
             {" "}
             <path
               fill={quantity == 1 ? "gray" : "#FF7300"}
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M18 10a1 1 0 01-1 1H3a1 1 0 110-2h14a1 1 0 011 1z"
             ></path>{" "}
           </g>
@@ -82,27 +82,27 @@ const Counter: FC<counterProps> = ({ quantity, setQuantity, price, id }) => {
           onClick={handleIncrement}
           cursor={"pointer"}
         >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
           <g
             id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></g>
           <g id="SVGRepo_iconCarrier">
             {" "}
             <path
               d="M5 12H19"
               stroke={quantity === 99 ? "gray" : "#FF7300"}
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             ></path>{" "}
             <path
               d="M12 5L12 19"
               stroke={quantity === 99 ? "gray" : "#FF7300"}
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             ></path>{" "}
           </g>
         </svg>

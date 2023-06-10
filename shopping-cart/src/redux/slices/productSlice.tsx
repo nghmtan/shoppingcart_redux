@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Product } from "../../type/Type";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 const productSlice = createSlice({
   name: "products",
@@ -17,15 +17,12 @@ const productSlice = createSlice({
       state.isLoading = false;
       //get success
     },
-    getProductFailed:(state)=>{
-      state.isLoading= false;
-    }
+    getProductFailed: (state) => {
+      state.isLoading = false;
+    },
   },
 });
-export const {
-getProductFailed,
-  getProducts,
-  getProductSuccess,
-} = productSlice.actions;
+export const { getProductFailed, getProducts, getProductSuccess } =
+  productSlice.actions;
 
 export default productSlice.reducer;

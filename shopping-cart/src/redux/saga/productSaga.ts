@@ -4,7 +4,14 @@ import axios from "axios";
 import { getProductFailed, getProductSuccess } from "../slices/productSlice";
 import { toast } from "react-toastify";
 function* workGetProductsFetch(): Generator<any, any, any> {
+    const showToastMessage = () => {
+        toast.error("Couldn't fetch data. Please try again.", {
+            position: toast.POSITION.BOTTOM_LEFT,
+          });
+      };
   try {
+    
+
     yield delay(3000);
     const response = yield call(
       axios.get,
@@ -26,11 +33,9 @@ function* workGetProductsFetch(): Generator<any, any, any> {
     });
     yield put(getProductSuccess(imagedProducts));
   } catch (error) {
+    yield delay(500)
+    showToastMessage();
     yield put(getProductFailed);
-    toast.error("Couldn't fetch data. Please try again.", {
-      position: toast.POSITION.BOTTOM_LEFT,
-    });
-    
   }
 }
 

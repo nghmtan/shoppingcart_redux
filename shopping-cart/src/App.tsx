@@ -1,7 +1,13 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import "./App.css";
 import MainOutlet from "./outlet/MainOutlet";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import Home from "./screens/Home";
 import Review from "./screens/Review";
 import Products from "./screens/Products/Products";
@@ -11,8 +17,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const a = useNavigate();
+  const b = useLocation();
   useLayoutEffect(() => {
-    a("/products");
+    if (b.pathname === "/") {
+      a("/products");
+    }
   }, []);
   return (
     <Routes>

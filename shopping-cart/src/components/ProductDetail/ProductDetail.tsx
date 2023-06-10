@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Counter from "../Counter/Counter";
 import cartt from "../../assets/images/cart.svg";
@@ -11,6 +11,10 @@ import { ToastContainer, toast } from "react-toastify";
 const ProductDetail = () => {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
+  useEffect(() => {
+    setQuantity(1);
+  }, [id]);
+
   const dispatch = useDispatch();
   const product: Product | undefined = useSelector((state: RootState) =>
     state.products.products.find((productt) => productt.productId === id)
