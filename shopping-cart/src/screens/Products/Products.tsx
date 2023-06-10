@@ -17,12 +17,14 @@ const Products = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (productList.length === 0) {
+      console.log("Dispatching getProducts action...");
       dispatch(getProducts());
     }
-  }, [dispatch]);
+  }, [dispatch, productList.length]);
+  console.log(isLoading);
   return (
     <div>
-      <div className={`overlay ${isLoading ? "show" : ""}`} />
+      <div className={`overlay ${isLoading ? "show" : "unshow"}`} />
       {isLoading ? (
         <div>
           <div className="absolute translate-x-[-50%]] translate-y-[-50%] top-1/2 left-1/2 right-1/2 m-0 ">
@@ -74,7 +76,7 @@ const Products = () => {
                   <div className="h-[80vh] flex justify-center items-center">
                     {" "}
                     <p className="text-center font-bold text-xl ">
-                      Please Select an product
+                      {productList.length > 0 ? "Please Select an product" : ""}
                     </p>
                   </div>
                 )}

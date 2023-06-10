@@ -20,7 +20,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<CartItemm>) => {
+    addToCart: (state: CartState, action: PayloadAction<CartItemm>) => {
       const { product, quantity } = action.payload;
       const { productId } = product;
       const itemInCart = state.items.find(
@@ -32,7 +32,7 @@ const cartSlice = createSlice({
         state.items.push({ product, quantity });
       }
     },
-    removeFromCart: (state, action: PayloadAction<string>) => {
+    removeFromCart: (state: CartState, action: PayloadAction<string>) => {
       const productId = action.payload;
       const index = state.items.findIndex(
         (item) => item.product.productId === productId
@@ -42,7 +42,7 @@ const cartSlice = createSlice({
       }
     },
 
-    incrementQuantity: (state, action: PayloadAction<string>) => {
+    incrementQuantity: (state: CartState, action: PayloadAction<string>) => {
       const item = state.items.find(
         (item) => item.product.productId === action.payload
       );
@@ -50,7 +50,7 @@ const cartSlice = createSlice({
         item.quantity++;
       }
     },
-    decrementQuantity: (state, action: PayloadAction<string>) => {
+    decrementQuantity: (state: CartState, action: PayloadAction<string>) => {
       const item = state.items.find(
         (item) => item.product.productId === action.payload
       );
@@ -62,17 +62,16 @@ const cartSlice = createSlice({
         }
       }
     },
-    purchaseRequest: (state, action: PayloadAction<RequestBody>) => {
+    purchaseRequest: (state: CartState, action: PayloadAction<RequestBody>) => {
       state.isLoading = true;
     },
-    purchaseSuccess: (state, action: PayloadAction<Response>) => {
+    purchaseSuccess: (state: CartState, action: PayloadAction<Response>) => {
       state.success = action.payload.success;
       state.items = [];
       state.isLoading = false;
     },
-    purchaseFailed: (state) => {
+    purchaseFailed: (state: CartState) => {
       state.isLoading = false;
-     
     },
   },
 });

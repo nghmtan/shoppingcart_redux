@@ -39,7 +39,7 @@ const Checkout = () => {
   };
   return (
     <div>
-      <div className={`overlay ${isLoading ? "show" : ""}`} />
+      <div className={`overlay ${isLoading ? "show" : "unshow"}`} />
       {isLoading ? (
         <div>
           <div className="absolute translate-x-[-50%]] translate-y-[-50%] top-1/2 left-1/2 right-1/2 m-0 ">
