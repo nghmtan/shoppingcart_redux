@@ -13,8 +13,10 @@ const ProductCard: FC<Product> = (props) => {
         />
       </div>
       <div className=" w-2/3  px-4">
-        <div className="mb-5">
-          <Link to={`/products/${productId}`} className="font-bold">{productName}</Link>
+        <div className="mb-20 mt-11">
+          <Link to={`/products/${productId}`} className="font-bold">
+            {productName}
+          </Link>
           <p className="text-gray-500 text-sm">{description}</p>
         </div>
         <div>

@@ -1,8 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CardList from "../../components/CartList/CardList";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { CartItemm } from "../../type/Type";
 
 const Checkout = () => {
+  const shippingCost = 10;
+  const cartList: CartItemm[] = useSelector(
+    (state: RootState) => state.cart.items
+  );
+  const subTotal = cartList.reduce((acc, curr) => {
+    return acc + curr.product.price * curr.quantity;
+  }, 0);
   return (
     <div>
       <div
@@ -39,26 +49,36 @@ const Checkout = () => {
                   <div className="col-span-12 text-lg">
                     <div className="flex items-center justify-between">
                       <p className="font-light text-gray-700">Subtotal:</p>
-                      <p className="font-normal">$0</p>
+                      <p className="font-normal">${subTotal.toFixed(2)}</p>
                     </div>
                     <div className="flex items-center justify-between">
                       <p className="font-light text-gray-700">Shipping Cost:</p>
-                      <p className="font-normal">$0</p>
+                      <p className="font-normal">
+                        ${subTotal > 0 ? shippingCost : 0}
+                      </p>
                     </div>
                   </div>
                   <div className="col-span-12">
                     <div className="flex items-center justify-between font-semibold text-3xl">
                       <p className="">Total:</p>
-                      <p className="">$0.00</p>
+                      <p className="">
+                        $
+                        {subTotal > 0
+                          ? (subTotal + shippingCost).toFixed(2)
+                          : 0}
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="col-span-12">
                 <button
-                  className="flex items-center justify-center duration-100 shadow-md gap-2 px-4 py-2 text-md rounded-md   
-    bg-blue-500 text-white hover:bg-blue-400 opacity-50 cursor-not-allowed w-full"
-                  disabled={true}
+                  className={`flex items-center justify-center duration-100 shadow-md gap-2 px-4 py-2 text-md rounded-md   
+    bg-blue-500 text-white ${
+      subTotal <= 0
+        ? `opacity-50 cursor-not-allowed disabled}`
+        : "opacity-100 hover:bg-blue-400"
+    }    w-full`}
                 >
                   Checkout
                 </button>

@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
+import { RootState } from "../redux/store";
+import { CartItemm } from "../type/Type";
+import { ToastContainer } from "react-toastify";
+import { getProducts } from "../redux/slices/productSlice";
+
 const MainOutlet = () => {
-  const quantity = 1;
+  const cartList: CartItemm[] = useSelector(
+    (state: RootState) => state.cart.items
+  );
+  console.log(cartList);
   return (
     <div>
       <div className="bg-white shadow-md px-5 ">
@@ -53,9 +62,9 @@ const MainOutlet = () => {
                     ></path>
                   </svg>
                 </div>
-                {quantity > 0 && (
+                {cartList.length > 0 && (
                   <div className="absolute -top-2 -right-2 bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">
-                    {quantity}
+                    {cartList.length}
                   </div>
                 )}
               </div>
@@ -64,6 +73,7 @@ const MainOutlet = () => {
         </div>
       </div>
       <Outlet />
+      <ToastContainer />
     </div>
   );
 };
